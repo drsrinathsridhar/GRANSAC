@@ -1,6 +1,6 @@
 # GRANSAC: Multi-threaded generic RANSAC implemetation
 
-This is a header-only, multi-threaded implementation of the RANSAC algorithm,
+This is a header-only, multi-threaded implementation of the [RANSAC algorithm](https://en.wikipedia.org/wiki/RANSAC),
 used widely in computer vision.
 
 Unlikely most other implementations, this is a **generic** implementation
