@@ -36,6 +36,8 @@ $ ./LineFittingSample 1000 500
 Running LineFittingSample should display a window with random 2D points around
 the diagonal. Green points show inliers.
 
+![RANSAC line fitting example](https://raw.githubusercontent.com/srinath1905/GRANSAC/master/examples/LineFitting.png)
+
 # Contact
 
 Srinath Sridhar (srinaths@umich.edu)

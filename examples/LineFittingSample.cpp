@@ -100,6 +100,8 @@ int main(int argc, char * argv[])
 	char Key = cv::waitKey(1);
 	if(Key == 27)
 	    return 0;
+	if(Key == ' ')
+	    cv::imwrite("LineFitting.png", Canvas);
     }
 
     return 0;
