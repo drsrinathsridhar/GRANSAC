@@ -6,11 +6,10 @@
 #include <array>
 #include <memory>
 
-typedef double VPFloat;
-typedef std::array<VPFloat, 2> Vector2VP;
-
 namespace GRANSAC
 {
+    typedef double VPFloat;
+
     // Each abstract model is made of abstract parameters
     // Could be anything from a point (that make a 2D line or 3D plane or image correspondences) to a line
     class AbstractParameter

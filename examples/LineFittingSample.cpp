@@ -7,14 +7,14 @@
 #include "GRANSAC.hpp"
 #include "LineModel.hpp"
 
-VPFloat Slope(int x0, int y0, int x1, int y1)
+GRANSAC::VPFloat Slope(int x0, int y0, int x1, int y1)
 {
-    return (VPFloat)(y1-y0)/(x1-x0);
+    return (GRANSAC::VPFloat)(y1-y0)/(x1-x0);
 }
 
 void DrawFullLine(cv::Mat& img, cv::Point a, cv::Point b, cv::Scalar color, int LineWidth)
 {
-    VPFloat slope = Slope(a.x, a.y, b.x, b.y);
+    GRANSAC::VPFloat slope = Slope(a.x, a.y, b.x, b.y);
 
     cv::Point p(0,0), q(img.cols, img.rows);
 
@@ -49,7 +49,7 @@ int main(int argc, char * argv[])
 
     std::uniform_int_distribution<int> UniDist(0, Side-1); // [Incl, Incl]
     int Perturb = 25;
-    std::normal_distribution<VPFloat> PerturbDist(0, Perturb);
+    std::normal_distribution<GRANSAC::VPFloat> PerturbDist(0, Perturb);
 
     std::vector<std::shared_ptr<GRANSAC::AbstractParameter>> CandPoints;
     for(int i = 0; i < nPoints; ++i)
@@ -67,7 +67,7 @@ int main(int argc, char * argv[])
     int start = cv::getTickCount();
     Estimator.Estimate(CandPoints);
     int end = cv::getTickCount();
-    std::cout << "RANSAC took: " << VPFloat(end-start) / VPFloat(cv::getTickFrequency()) * 1000.0 << " ms." << std::endl;
+    std::cout << "RANSAC took: " << GRANSAC::VPFloat(end-start) / GRANSAC::VPFloat(cv::getTickFrequency()) * 1000.0 << " ms." << std::endl;
 
     auto BestInliers = Estimator.GetBestInliers();
     if(BestInliers.size() > 0)

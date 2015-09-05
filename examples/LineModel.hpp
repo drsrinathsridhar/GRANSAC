@@ -2,11 +2,13 @@
 
 #include "AbstractModel.hpp"
 
+typedef std::array<GRANSAC::VPFloat, 2> Vector2VP;
+
 class Point2D
     : public GRANSAC::AbstractParameter
 {
 public:
-    Point2D(VPFloat x, VPFloat y)
+    Point2D(GRANSAC::VPFloat x, GRANSAC::VPFloat y)
     {
 	m_Point2D[0] = x;
 	m_Point2D[1] = y;
@@ -20,14 +22,14 @@ class Line2DModel
 {
 protected:
     // Parametric form
-    VPFloat m_a, m_b, m_c; // ax + by + c = 0
-    VPFloat m_DistDenominator; // = sqrt(a^2 + b^2). Stored for efficiency reasons
+    GRANSAC::VPFloat m_a, m_b, m_c; // ax + by + c = 0
+    GRANSAC::VPFloat m_DistDenominator; // = sqrt(a^2 + b^2). Stored for efficiency reasons
 
     // Another parametrization y = mx + d
-    VPFloat m_m; // Slope
-    VPFloat m_d; // Intercept
+    GRANSAC::VPFloat m_m; // Slope
+    GRANSAC::VPFloat m_d; // Intercept
 
-    virtual VPFloat ComputeDistanceMeasure(std::shared_ptr<GRANSAC::AbstractParameter> Param) override
+    virtual GRANSAC::VPFloat ComputeDistanceMeasure(std::shared_ptr<GRANSAC::AbstractParameter> Param) override
     {
 	auto ExtPoint2D = std::dynamic_pointer_cast<Point2D>(Param);
 	if(ExtPoint2D == nullptr)
@@ -35,8 +37,8 @@ protected:
 
 	// Return distance between passed "point" and this line
 	// http://mathworld.wolfram.com/Point-LineDistance2-Dimensional.html
-	VPFloat Numer = fabs(m_a * ExtPoint2D->m_Point2D[0] + m_b * ExtPoint2D->m_Point2D[1] + m_c);
-	VPFloat Dist = Numer / m_DistDenominator;
+	GRANSAC::VPFloat Numer = fabs(m_a * ExtPoint2D->m_Point2D[0] + m_b * ExtPoint2D->m_Point2D[1] + m_c);
+	GRANSAC::VPFloat Dist = Numer / m_DistDenominator;
 
 	// // Debug
 	// std::cout << "Point: " << ExtPoint2D->m_Point2D[0] << ", " << ExtPoint2D->m_Point2D[1] << std::endl;
@@ -78,7 +80,7 @@ public:
 	m_DistDenominator = sqrt(m_a * m_a + m_b * m_b); // Cache square root for efficiency
     };
 
-    virtual std::pair<VPFloat, std::vector<std::shared_ptr<GRANSAC::AbstractParameter>>> Evaluate(std::vector<std::shared_ptr<GRANSAC::AbstractParameter>> EvaluateParams, VPFloat Threshold)
+    virtual std::pair<GRANSAC::VPFloat, std::vector<std::shared_ptr<GRANSAC::AbstractParameter>>> Evaluate(std::vector<std::shared_ptr<GRANSAC::AbstractParameter>> EvaluateParams, GRANSAC::VPFloat Threshold)
     {
 	std::vector<std::shared_ptr<GRANSAC::AbstractParameter>> Inliers;
 	int nTotalParams = EvaluateParams.size();
@@ -93,7 +95,7 @@ public:
 	    }
 	}
 
-	VPFloat InlierFraction = VPFloat(nInliers) / VPFloat(nTotalParams); // This is the inlier fraction
+	GRANSAC::VPFloat InlierFraction = GRANSAC::VPFloat(nInliers) / GRANSAC::VPFloat(nTotalParams); // This is the inlier fraction
 
 	return std::make_pair(InlierFraction, Inliers);
     };

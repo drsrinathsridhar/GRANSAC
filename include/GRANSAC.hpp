@@ -118,7 +118,7 @@ namespace GRANSAC
 		}
 	    }
 
-	    std::cout << "BestInlierFraction: " << m_BestModelScore << std::endl;
+	    // std::cout << "BestInlierFraction: " << m_BestModelScore << std::endl;
 
 	    Reset();
 
