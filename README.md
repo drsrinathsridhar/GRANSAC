@@ -38,7 +38,11 @@ the diagonal. Green points show inliers.
 
 ![RANSAC line fitting example](https://raw.githubusercontent.com/srinath1905/GRANSAC/master/examples/LineFitting.png)
 
-# Contact
+## License
+
+GRANSAC is released under an [MIT License](https://opensource.org/licenses/MIT).
+
+## Contact
 
 Srinath Sridhar (srinaths@umich.edu)
 Max Planck Institute for Informatics
