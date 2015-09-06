@@ -52,7 +52,6 @@ namespace GRANSAC
 	    // Clear sampled models, etc. and prepare for next call. Reset RANSAC estimator state
 	    m_Data.clear();
 	    m_SampledModels.clear();
-	    m_BestInliers.clear();
 
 	    m_BestModelIdx = -1;
 	    m_BestModelScore = 0.0;
