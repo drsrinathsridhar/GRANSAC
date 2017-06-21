@@ -49,12 +49,12 @@ protected:
     };
 
 public:
-    Line2DModel(std::vector<std::shared_ptr<GRANSAC::AbstractParameter>> InputParams)
+    Line2DModel(const std::vector<std::shared_ptr<GRANSAC::AbstractParameter>> &InputParams)
     {
 	Initialize(InputParams);
     };
 
-    virtual void Initialize(std::vector<std::shared_ptr<GRANSAC::AbstractParameter>> InputParams) override
+    virtual void Initialize(const std::vector<std::shared_ptr<GRANSAC::AbstractParameter>> &InputParams) override
     {
 	if(InputParams.size() != 2)
 	    throw std::runtime_error("Line2DModel - Number of input parameters does not match minimum number required for this model.");
@@ -80,7 +80,7 @@ public:
 	m_DistDenominator = sqrt(m_a * m_a + m_b * m_b); // Cache square root for efficiency
     };
 
-    virtual std::pair<GRANSAC::VPFloat, std::vector<std::shared_ptr<GRANSAC::AbstractParameter>>> Evaluate(std::vector<std::shared_ptr<GRANSAC::AbstractParameter>> EvaluateParams, GRANSAC::VPFloat Threshold)
+    virtual std::pair<GRANSAC::VPFloat, std::vector<std::shared_ptr<GRANSAC::AbstractParameter>>> Evaluate(const std::vector<std::shared_ptr<GRANSAC::AbstractParameter>> &EvaluateParams, GRANSAC::VPFloat Threshold)
     {
 	std::vector<std::shared_ptr<GRANSAC::AbstractParameter>> Inliers;
 	int nTotalParams = EvaluateParams.size();

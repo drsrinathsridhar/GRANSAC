@@ -25,12 +25,12 @@ namespace GRANSAC
     protected:
 	std::array<std::shared_ptr<AbstractParameter>, t_NumParams> m_MinModelParams;
 
-	virtual VPFloat ComputeDistanceMeasure(std::shared_ptr<AbstractParameter> Param) = 0;
+        virtual VPFloat ComputeDistanceMeasure(std::shared_ptr<AbstractParameter> Param) = 0;
 
     public:
-	virtual void Initialize(std::vector<std::shared_ptr<AbstractParameter>> InputParams) = 0;
-	virtual std::pair<VPFloat, std::vector<std::shared_ptr<AbstractParameter>>> Evaluate(std::vector<std::shared_ptr<AbstractParameter>> EvaluateParams, VPFloat Threshold) = 0;
+        virtual void Initialize(const std::vector<std::shared_ptr<AbstractParameter>> &InputParams) = 0;
+        virtual std::pair<VPFloat, std::vector<std::shared_ptr<AbstractParameter>>> Evaluate(const std::vector<std::shared_ptr<AbstractParameter>> &EvaluateParams, VPFloat Threshold) = 0;
 
-	virtual std::array<std::shared_ptr<AbstractParameter>, t_NumParams> GetModelParams(void) { return m_MinModelParams; };
+        virtual std::array<std::shared_ptr<AbstractParameter>, t_NumParams> GetModelParams(void) { return m_MinModelParams; };
     };
 } // namespace GRANSAC
