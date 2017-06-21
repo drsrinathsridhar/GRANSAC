@@ -35,7 +35,7 @@ namespace GRANSAC
 	RANSAC(void)
         {
 	    int nThreads = std::max(1, omp_get_max_threads());
-            std::cout << "[ INFO ]: Maximum usable threads: " << nThreads << std::endl;
+            std::cerr << "[ INFO ]: Maximum usable threads: " << nThreads << std::endl;
 	    for(int i = 0; i < nThreads; ++i)
 	    {
 		std::random_device SeedDevice;
@@ -70,7 +70,7 @@ namespace GRANSAC
 	{
 	    if(Data.size() <= t_NumParams)
 	    {
-                std::cout << "[ WARN ]: RANSAC - Number of data points is too less. Not doing anything." << std::endl;
+                std::cerr << "[ WARN ]: RANSAC - Number of data points is too less. Not doing anything." << std::endl;
 		return false;
 	    }
 
@@ -118,7 +118,7 @@ namespace GRANSAC
 		}
 	    }
 
-            // std::cout << "BestInlierFraction: " << m_BestModelScore << std::endl;
+            // std::cerr << "BestInlierFraction: " << m_BestModelScore << std::endl;
 
 	    Reset();
 
