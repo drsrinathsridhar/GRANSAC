@@ -94,7 +94,7 @@ namespace GRANSAC
 
 				std::shuffle(RemainderSamples.begin(), RemainderSamples.end(), m_RandEngines[omp_get_thread_num()]); // To avoid picking the same element more than once
 				std::copy(RemainderSamples.begin(), RemainderSamples.begin() + t_NumParams, RandomSamples.begin());
-				RemainderSamples.erase(RemainderSamples.begin(), RemainderSamples.begin() + t_NumParams);
+				//RemainderSamples.erase(RemainderSamples.begin(), RemainderSamples.begin() + t_NumParams); // Remove the model data points from consideration. 2018: Turns out this is not a good idea
 
 				std::shared_ptr<T> RandomModel = std::make_shared<T>(RandomSamples);
 
@@ -118,7 +118,7 @@ namespace GRANSAC
 				}
 			}
 
-			// std::cerr << "BestInlierFraction: " << m_BestModelScore << std::endl;
+			//std::cerr << "BestInlierFraction: " << m_BestModelScore << std::endl;
 
 			Reset();
 

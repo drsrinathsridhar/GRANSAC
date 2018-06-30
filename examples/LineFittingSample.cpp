@@ -20,7 +20,7 @@ void DrawFullLine(cv::Mat& img, cv::Point a, cv::Point b, cv::Scalar color, int 
 	p.y = -(a.x - p.x) * slope + a.y;
 	q.y = -(b.x - q.x) * slope + b.y;
 
-	cv::line(img, p, q, color, LineWidth, 8, 0);
+	cv::line(img, p, q, color, LineWidth, cv::LINE_AA, 0);
 }
 
 int main(int argc, char * argv[])
@@ -55,14 +55,14 @@ int main(int argc, char * argv[])
 	{
 		int Diag = UniDist(RNG);
 		cv::Point Pt(floor(Diag + PerturbDist(RNG)), floor(Diag + PerturbDist(RNG)));
-		cv::circle(Canvas, Pt, floor(Side / 100), cv::Scalar(0, 0, 0), -1);
+		cv::circle(Canvas, Pt, floor(Side / 100) + 3, cv::Scalar(0, 0, 0), 2, cv::LINE_AA);
 
 		std::shared_ptr<GRANSAC::AbstractParameter> CandPt = std::make_shared<Point2D>(Pt.x, Pt.y);
 		CandPoints.push_back(CandPt);
 	}
 
 	GRANSAC::RANSAC<Line2DModel, 2> Estimator;
-	Estimator.Initialize(20, 100); // Threshold, iterations
+	Estimator.Initialize(20, 2); // Threshold, iterations
 	int start = cv::getTickCount();
 	Estimator.Estimate(CandPoints);
 	int end = cv::getTickCount();
@@ -75,7 +75,7 @@ int main(int argc, char * argv[])
 		{
 			auto RPt = std::dynamic_pointer_cast<Point2D>(Inlier);
 			cv::Point Pt(floor(RPt->m_Point2D[0]), floor(RPt->m_Point2D[1]));
-			cv::circle(Canvas, Pt, floor(Side / 100), cv::Scalar(0, 255, 0), -1);
+			cv::circle(Canvas, Pt, floor(Side / 100), cv::Scalar(0, 255, 0), -1, cv::LINE_AA);
 		}
 	}
 
