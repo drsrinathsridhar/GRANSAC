@@ -62,7 +62,7 @@ int main(int argc, char * argv[])
 	}
 
 	GRANSAC::RANSAC<Line2DModel, 2> Estimator;
-	Estimator.Initialize(20, 2); // Threshold, iterations
+	Estimator.Initialize(20, 100); // Threshold, iterations
 	int start = cv::getTickCount();
 	Estimator.Estimate(CandPoints);
 	int end = cv::getTickCount();
