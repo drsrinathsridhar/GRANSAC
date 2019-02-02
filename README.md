@@ -3,7 +3,7 @@
 This is a header-only, multi-threaded implementation of the [RANSAC algorithm](https://en.wikipedia.org/wiki/RANSAC),
 used widely in computer vision.
 
-Unlikely most other implementations, this is a **generic** implementation
+Unlike most other implementations, this is a **generic** implementation
 which can be adopted for any problem. The user has to implement a class that
 inherits the AbstractModel class. Using RANSAC afterwards should just work.
 
