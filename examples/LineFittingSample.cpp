@@ -2,6 +2,7 @@
 #include <opencv2/opencv.hpp>
 #include <cmath>
 #include <random>
+#include <cstdint>
 
 #include "GRANSAC.hpp"
 #include "LineModel.hpp"
@@ -63,9 +64,9 @@ int main(int argc, char * argv[])
 
 	GRANSAC::RANSAC<Line2DModel, 2> Estimator;
 	Estimator.Initialize(20, 100); // Threshold, iterations
-	int start = cv::getTickCount();
+	int64_t start = cv::getTickCount();
 	Estimator.Estimate(CandPoints);
-	int end = cv::getTickCount();
+	int64_t end = cv::getTickCount();
 	std::cout << "RANSAC took: " << GRANSAC::VPFloat(end - start) / GRANSAC::VPFloat(cv::getTickFrequency()) * 1000.0 << " ms." << std::endl;
 
 	auto BestInliers = Estimator.GetBestInliers();
